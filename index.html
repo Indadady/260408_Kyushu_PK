@@ -12,7 +12,18 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>규슈 여행 비교 제안서 (모바일 로고 수정)</title>
+    <title>규슈 여행 비교 제안서</title>
+
+    <!-- 🌟 카카오톡/SNS 공유 시 보여질 미리보기 설정 (Open Graph) -->
+    <meta property="og:title" content="[비교 제안서] 규슈 3일 (인천 vs 청주 출발)">
+    <meta property="og:description" content="스기노이 온천 호캉스부터 스즈메의 문단속 배경지까지! 9인 단독 견적을 확인해보세요.">
+    <!-- 아래 이미지 URL을 실제 원하시는 고화질 대표 이미지로 변경하시면 됩니다. (1200x630 권장) -->
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdqC8oF0K3x6VqO8x7wQ5qZ4x9rT6yU8iO2pA4sS6dF8gH0jL2kZ4x6cV8bN0mM2lK4jH6gF8d/s1600/kyushu_thumbnail_sample.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://www.tourmaker.co.kr/proposal/kyushu">
+    <meta property="og:type" content="website">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -39,10 +50,9 @@
         }
 
         /* 2. RESPONSIVE PAGE CONTAINER */
-        /* PC: A4 Size / Mobile: 100% Width */
         .page-container {
             width: 100%;
-            max-width: 210mm; /* A4 Width restriction for Desktop */
+            max-width: 210mm;
             min-height: 297mm;
             background-color: #ffffff;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -53,7 +63,7 @@
             margin: 0 auto;
         }
 
-        /* 3. MOBILE OPTIMIZATION (Screens smaller than 768px) */
+        /* 3. MOBILE OPTIMIZATION */
         @media screen and (max-width: 768px) {
             body {
                 padding: 0;
@@ -74,14 +84,12 @@
             .logo-img {
                 align-self: flex-end;
                 margin-top: -10px;
-                /* 🚨 Logo Size Adjustment for Mobile */
                 height: 28px !important; 
                 width: auto;
             }
             h1 {
                 font-size: 22px !important;
             }
-            /* Table Scrolling for Mobile */
             .table-wrap {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
@@ -89,7 +97,7 @@
                 border: 1px solid #eee;
             }
             table {
-                min-width: 600px; /* Ensure table doesn't squash too much */
+                min-width: 600px;
             }
             .price-text {
                 font-size: 16px !important;
@@ -116,6 +124,9 @@
                 overflow: visible;
                 border: none;
             }
+            .video-section {
+                display: none;
+            }
         }
 
         /* 5. TYPOGRAPHY & HEADER */
@@ -141,7 +152,7 @@
         }
 
         .logo-img {
-            height: 40px; /* Default Desktop Size */
+            height: 40px;
             width: auto;
         }
 
@@ -262,6 +273,34 @@
             border-radius: 4px;
             margin-bottom: 20px;
             border: 1px solid #e2e8f0;
+        }
+
+        /* 🚨 Video Section Styles */
+        .video-section {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-caption {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -486,7 +525,7 @@
         </div>
     </div>
 
-    <!-- PAGE 3: Cheongju Itinerary -->
+    <!-- PAGE 3: Cheongju Itinerary & Video -->
     <div class="page-container">
         <header>
             <div class="header-title">
@@ -567,6 +606,15 @@
 
         <div class="checkpoint">
             <i class="fas fa-check"></i> <b>Check Point:</b> B안은 가이드/기사 경비가 상품가에 모두 포함되어 있어, 현지 추가 지불이 없습니다.
+        </div>
+
+        <!-- 🚨 YouTube Video Section -->
+        <div class="video-section">
+            <h2><i class="fab fa-youtube" style="color:red;"></i> 미리 떠나는 규슈 여행 (영상)</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/SegapvWsnHE" title="Kyushu Travel Preview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p class="video-caption">▲ 영상으로 규슈의 핵심 관광지를 미리 만나보세요!</p>
         </div>
 
         <div class="doc-footer">
