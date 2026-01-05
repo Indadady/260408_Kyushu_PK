@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 🚨 Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH9GD9SVR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JLH9GD9SVR');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>규슈 여행 비교 제안서 (수정안)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. SETUP & PRINT OPTIMIZATION */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            background-color: #525659;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin: 0;
+            padding: 40px 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #111;
+        }
+
+        /* 2. A4 PORTRAIT CONTAINER */
+        .page-container {
+            width: 210mm;
+            min-height: 297mm; /* A4 Height */
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            padding: 20mm; /* Standard Document Margin */
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+                gap: 0;
+            }
+            .page-container {
+                width: 100%;
+                min-height: 100vh;
+                box-shadow: none;
+                page-break-after: always;
+                border: none;
+                padding: 20mm;
+            }
+        }
+
+        /* 3. TYPOGRAPHY & HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 3px solid #1e3a8a;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header-title h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin: 0;
+        }
+
+        .header-title span {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .logo-img {
+            height: 40px; /* Logo Height */
+            width: auto;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 30px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 5px solid #1e3a8a;
+            padding-left: 10px;
+            background-color: #f1f5f9;
+            padding: 8px 10px;
+        }
+
+        /* 4. CONTENT BLOCKS */
+        .notice-box {
+            background-color: #fff1f2;
+            border: 1px solid #fecdd3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .notice-box strong { color: #e11d48; display: block; margin-bottom: 8px; }
+        .notice-box ol { margin: 0; padding-left: 20px; color: #475569; }
+        .notice-box li { margin-bottom: 5px; }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #334155;
+            font-weight: 700;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .center { text-align: center; }
+        .left { text-align: left; }
+        
+        /* Comparison Table Specifics */
+        .col-header-a { background-color: #eff6ff !important; color: #1e40af; }
+        .col-header-b { background-color: #f0fdf4 !important; color: #166534; }
+        
+        .price-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: #b91c1c;
+        }
+
+        /* Itinerary Table Specifics */
+        .day-cell {
+            background-color: #f1f5f9;
+            font-weight: bold;
+            color: #334155;
+            width: 50px;
+        }
+        
+        .highlight-blue { color: #2563eb; font-weight: 600; }
+        .highlight-red { color: #e11d48; font-weight: 600; }
+
+        .time-badge {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-right: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* Footer */
+        .doc-footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 10px;
+        }
+
+        .transport-note {
+            font-size: 11px;
+            color: #666;
+            margin-top: 4px;
+            font-weight: normal;
+        }
+
+        /* Checkpoint Highlight */
+        .checkpoint {
+            background-color: #fffbeb;
+            border: 1px solid #fcd34d;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #92400e;
+            margin-top: 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: Comparison & Summary -->
+    <div class="page-container">
+        <header>
+            <div class="header-title">
+                <h1>규슈 3일 패키지 비교 제안서</h1>
+                <span>작성일: 2026. 04. 08 출발 기준 | 수신: 귀하</span>
+            </div>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="Tourmaker Logo" class="logo-img">
+        </header>
+
+        <div class="notice-box">
+            <strong><i class="fas fa-exclamation-circle"></i> 예약 전 필수 확인 사항</strong>
+            <ol>
+                <li style="color:#e11d48; font-weight:bold;">표기된 금액은 현재 시점의 [최저가 기준]이며, 실 예약 시 항공 좌석 상황 및 호텔 수급에 따라 금액이 인상될 수 있습니다.</li>
+                <li>본 상품은 현지 합류 <b>[연합 패키지]</b> 상품입니다.</li>
+                <li>표기된 금액은 <b>[9인 단체 기준]</b>이며, 공항 수송비(쏠라티)가 포함된 1인 견적입니다.</li>
+            </ol>
+        </div>
+
+        <h2><i class="fas fa-chart-pie"></i> 조건 비교 (9인 기준)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 15%;">구분</th>
+                    <th class="col-header-a" style="width: 42.5%;">A안 (인천 출발)</th>
+                    <th class="col-header-b" style="width: 42.5%;">B안 (청주 출발)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>항공 일정</th>
+                    <td class="center">
+                        <b>진에어 (LJ)</b><br>
+                        06:50 출발 - 21:35 도착<br>
+                        <span style="font-size:11px; color:#666;">(꽉 찬 2박 3일)</span>
+                    </td>
+                    <td class="center">
+                        <b>티웨이 (TW)</b><br>
+                        17:05 출발 - 20:40 도착<br>
+                        <span style="font-size:11px; color:#666;">(여유로운 오후 출발)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>숙박</th>
+                    <td class="center">
+                        서튼 호텔 하카타 시티 (1박)<br>
+                        <b>스기노이 호텔 [니지칸]</b> (1박)<br>
+                        <span style="font-size:11px; color:blue;">(루프탑 수영장+뷔페+주류무제한)</span>
+                    </td>
+                    <td class="center">
+                        <b>힐튼 후쿠오카 씨호크</b> (1박)<br>
+                        그랑비리오 벳부만 (1박)<br>
+                        <span style="font-size:11px; color:green;">(생맥주/아이스크림 무제한 특전)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color: #fff1f2; color: #e11d48;">가이드/기사<br>경비</th>
+                    <td class="center" style="background-color: #fff1f2;">
+                        <span class="highlight-red">불포함 (현지 지불)</span><br>
+                        <span style="font-size:12px;">1인 3,000엔 (약 27,000원)</span>
+                    </td>
+                    <td class="center" style="background-color: #ecfdf5;">
+                        <span class="highlight-blue" style="color: #059669;">포함 (지불 불필요)</span><br>
+                        <span style="font-size:12px;">상품가에 이미 포함됨</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>기본 상품가<br>(1인)</th>
+                    <td class="center">
+                        899,000원
+                    </td>
+                    <td class="center">
+                        839,000원
+                    </td>
+                </tr>
+                <tr>
+                    <th>공항 수송비<br>(1인 분담)</th>
+                    <td class="center">
+                        122,300원<br>
+                        <span class="transport-note">쏠라티 110만원 / 9명 기준</span>
+                    </td>
+                    <td class="center">
+                        100,000원<br>
+                        <span class="transport-note">쏠라티 90만원 / 9명 기준</span>
+                    </td>
+                </tr>
+                <tr style="border-top: 2px solid #333;">
+                    <th>최종 1인 합계<br><span style="font-size:11px; font-weight:normal;">(가이드팁 제외)</span></th>
+                    <td class="center price-text">1,021,300원<br><span style="font-size:12px; color:#666; font-weight:normal;">(+현지 3,000엔 별도)</span></td>
+                    <td class="center price-text">939,000원<br><span style="font-size:12px; color:#059669; font-weight:normal;">(현지 추가비용 없음)</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+         <h2><i class="fas fa-clipboard-check"></i> 포함 / 불포함 사항</h2>
+        <table>
+            <colgroup>
+                <col style="width: 20%">
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>포함 사항</th>
+                    <td class="left">
+                        왕복 항공료(텍스/유류 포함), 전 일정 숙박(2인1실), 식사/입장료, 여행자 보험, <b>공항 왕복 수송비(국내)</b><br>
+                        <span style="color: #059669;">※ B안(청주)은 가이드/기사 경비 포함</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="color: #e11d48;">불포함 사항</th>
+                    <td class="left">
+                        기타 개인 경비, 매너팁<br>
+                        <span style="color: #e11d48;">※ A안(인천)은 가이드/기사 경비 불포함 (1인 3,000엔 현지 지불)</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="doc-footer">
+            1 / 3 Page | Travel with TOUR MAKER
+        </div>
+    </div>
+
+    <!-- PAGE 2: Incheon Itinerary -->
+    <div class="page-container">
+        <header>
+            <div class="header-title">
+                <h1>상세 일정표 (A안)</h1>
+                <span>인천 출발: 스기노이 온천 & 핵심 관광</span>
+            </div>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="Tourmaker Logo" class="logo-img">
+        </header>
+
+        <h2><i class="fas fa-plane-departure"></i> 인천 출발 (진에어) - 2026. 04. 08 (수)</h2>
+        <table>
+            <colgroup>
+                <col style="width: 10%">
+                <col style="width: 15%">
+                <col>
+                <col style="width: 15%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>일자</th>
+                    <th>지역</th>
+                    <th>주요 일정</th>
+                    <th>식사</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="center day-cell">1일</td>
+                    <td class="center">인천<br>후쿠오카</td>
+                    <td class="left">
+                        <span class="time-badge">06:50</span> 인천공항 출발 (LJ261)<br>
+                        <span class="time-badge">08:10</span> 후쿠오카 공항 도착<br><br>
+                        ■ <b>이토시마:</b> 부부바위, 해안 카페거리 관광<br>
+                        ■ <b>유센테이:</b> 도심 속 힐링 일본식 정원 산책<br>
+                        ■ <b>라라포트:</b> 실물 건담 입상 및 자유 쇼핑<br><br>
+                        <i class="fas fa-bed"></i> <b>서튼 호텔 하카타 시티</b> 또는 동급
+                    </td>
+                    <td class="center">
+                        중: 현지식<br>
+                        석: 불포함
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center day-cell">2일</td>
+                    <td class="center">유후인<br>벳부</td>
+                    <td class="left">
+                        ■ <b>다자이후 텐만구:</b> 학문의 신, 매화가지떡<br>
+                        ■ <b>유후인:</b> 긴린코 호수, 유노쓰보 거리 산책<br>
+                        ■ <b>가마도 지옥:</b> 온천 족욕 및 계란/사이다 체험<br>
+                        ■ <b>유노하나:</b> 유황 재배지 견학<br><br>
+                        <span class="highlight-blue">★ 스기노이 호텔 [니지칸] 투숙</span><br>
+                        - 루프탑 수영장(아쿠아가든), 타나유 노천온천<br>
+                        - <span class="highlight-red">석식 뷔페 + 주류 무제한(노미호다이) 제공</span>
+                    </td>
+                    <td class="center">
+                        조: 호텔식<br>
+                        중: 현지식<br>
+                        석: 호텔식
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center day-cell">3일</td>
+                    <td class="center">기타큐슈<br>인천</td>
+                    <td class="left">
+                        ■ <b>모지항 레트로:</b> 이국적인 항구 도시 산책<br>
+                        ■ <b>고쿠라성:</b> 기타큐슈의 상징 (천수각 내부 관람)<br>
+                        ■ <b>탄가 시장:</b> 기타큐슈의 부엌, 재래시장 탐방<br>
+                        ■ <b>베이사이드 플레이스 & 하카타 타워</b><br><br>
+                        <span class="time-badge">20:05</span> 후쿠오카 공항 출발 (LJ266)<br>
+                        <span class="time-badge">21:35</span> 인천공항 도착
+                    </td>
+                    <td class="center">
+                        조: 호텔식<br>
+                        중: 현지식<br>
+                        석: 기내식
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="checkpoint">
+            <i class="fas fa-check"></i> <b>Check Point:</b> A안은 가이드/기사 경비(1인 3,000엔)가 불포함이며, 현지에서 엔화로 지불하셔야 합니다.
+        </div>
+
+        <div class="doc-footer">
+            2 / 3 Page | Travel with TOUR MAKER
+        </div>
+    </div>
+
+    <!-- PAGE 3: Cheongju Itinerary -->
+    <div class="page-container">
+        <header>
+            <div class="header-title">
+                <h1>상세 일정표 (B안)</h1>
+                <span>청주 출발: 힐튼 & 스즈메의 문단속 배경지</span>
+            </div>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="Tourmaker Logo" class="logo-img">
+        </header>
+
+        <h2><i class="fas fa-plane-departure"></i> 청주 출발 (티웨이) - 2026. 04. 08 (수)</h2>
+        <table>
+            <colgroup>
+                <col style="width: 10%">
+                <col style="width: 15%">
+                <col>
+                <col style="width: 15%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>일자</th>
+                    <th>지역</th>
+                    <th>주요 일정</th>
+                    <th>식사</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="center day-cell">1일</td>
+                    <td class="center">청주<br>후쿠오카</td>
+                    <td class="left">
+                        <span class="time-badge">17:05</span> 청주공항 출발 (TW225)<br>
+                        <span class="time-badge">18:20</span> 후쿠오카 공항 도착<br><br>
+                        ■ <b>라라포트 후쿠오카:</b> 건담 입상 및 자유식<br>
+                        호텔 이동 및 체크인<br><br>
+                        <i class="fas fa-bed"></i> <b>힐튼 후쿠오카 씨호크</b> (특급)<br>
+                        <span style="font-size:11px; color:#666;">※ 석식은 라라포트 내 자유식(개별)으로 진행됩니다.</span>
+                    </td>
+                    <td class="center">
+                        석: 불포함
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center day-cell">2일</td>
+                    <td class="center">히타<br>유후인<br>벳부</td>
+                    <td class="left">
+                        ■ <b>히타 마메다마치:</b> 큐슈의 작은 교토 산책<br>
+                        ■ <b>쿤초 양조장:</b> 300년 전통 사케 양조장<br>
+                        ■ <b>분고모리 기관고:</b> 애니메이션 '스즈메의 문단속' 배경지<br>
+                        ■ <b>유후인:</b> 긴린코 호수, 플로랄 빌리지 자유시간<br><br>
+                        <i class="fas fa-bed"></i> <b>그랑비리오 호텔 벳부만</b> 또는 동급<br>
+                        <span class="highlight-blue">※ 특전: 생맥주 & 아이스크림 무제한, 샤브샤브 석식</span>
+                    </td>
+                    <td class="center">
+                        조: 호텔식<br>
+                        중: 함바그<br>
+                        석: 샤브샤브
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center day-cell">3일</td>
+                    <td class="center">벳부<br>후쿠오카<br>청주</td>
+                    <td class="left">
+                        ■ <b>유노하나 & 가마도 지옥:</b> 온천 체험 (라무네 간식)<br>
+                        ■ <b>뇨이린지 (개구리절):</b> 3천여개 개구리 석상<br>
+                        ■ <b>다자이후 텐만구:</b> 합격 기원 신사<br><br>
+                        <span class="time-badge">19:20</span> 후쿠오카 공항 출발 (TW226)<br>
+                        <span class="time-badge">20:40</span> 청주공항 도착
+                    </td>
+                    <td class="center">
+                        조: 호텔식<br>
+                        중: 토반야키
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="checkpoint">
+            <i class="fas fa-check"></i> <b>Check Point:</b> B안은 가이드/기사 경비가 상품가에 모두 포함되어 있어, 현지 추가 지불이 없습니다.
+        </div>
+
+        <div class="doc-footer">
+            3 / 3 Page | Travel with TOUR MAKER
+        </div>
+    </div>
+
+</body>
+</html>
